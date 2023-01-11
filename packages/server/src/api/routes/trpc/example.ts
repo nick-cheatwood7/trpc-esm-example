@@ -18,7 +18,8 @@ export const exampleRouter = createTRPCRouter({
                 greeting: `Hello, ${input.name}`
             };
         }),
-    getSecretMessage: protectedProducer.query(() => {
+    getSecretMessage: protectedProducer.query(({ ctx }) => {
+        console.log("Session data:", ctx.session);
         return "You can now see this secret message";
     })
 });
